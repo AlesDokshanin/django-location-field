@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
 GOOGLE_MAPS_V3_APIKEY = getattr(settings, 'GOOGLE_MAPS_V3_APIKEY', None)
-GOOGLE_API_JS = '//maps.google.com/maps/api/js?sensor=false'
+GOOGLE_API_JS = '//maps.google.com/maps/api/js?sensor=false&libraries=places'
 
 if GOOGLE_MAPS_V3_APIKEY:
     GOOGLE_API_JS = '{0}&key={1}'.format(GOOGLE_API_JS, GOOGLE_MAPS_V3_APIKEY)

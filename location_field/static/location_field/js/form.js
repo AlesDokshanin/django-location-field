@@ -1,6 +1,13 @@
 ($ || django.jQuery)(function($){
     function location_field_load(map, location_based, zoom, suffix)
     {
+        $(location_based).keypress(function(e){
+            if ( e.which == 13 )
+            {
+                return false;
+            }
+        });
+
         var parent = map.parent().parent();
 
         var location_map;
@@ -25,7 +32,9 @@
             var options = {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            
+
+            var autocomplete = new google.maps.places.Autocomplete(location_based[0]);
+
             location_map = new google.maps.Map(map[0], options);
 
             var initial_position;
@@ -75,7 +84,7 @@
                                 lstr.push(b.val())
                         });
 
-                        if (lstr.length > 0 && suffix != '') 
+                        if (lstr.length > 0 && suffix != '')
                             lstr.push(suffix);
 
                         geocode(lstr.join(','), function(l){
@@ -88,6 +97,10 @@
                     f.change(cb);
                 else
                     f.keyup(cb);
+
+                f.on('click', function(event){
+                    f.val('');
+                });
             });
 
             // Prevents querying Google Maps everytime field changes
