@@ -69,5 +69,5 @@ class LocationWidget(widgets.TextInput):
         js = (
             GOOGLE_API_JS,
             settings.STATIC_URL + 'location_field/js/jquery.livequery.js',
-            settings.STATIC_URL + 'location_field/js/form.js',
+            settings.STATIC_URL + 'location_field/js/form_20092015.js',
         )
